@@ -1,0 +1,38 @@
+{ "C4.5 DT":
+  {"max_depth": 5},
+  "RF":
+  {"class_weight": "balanced",
+    "n_estimators": 100},
+  "KNN":
+  { "n_neighbors": 10,
+    "p": 2,
+    "weights": "distance"},
+  "SVM":
+  { "class_weight": "balanced",
+    "kernel": "rbf",
+    "probability": true
+  },
+  "LogReg": {
+    "multi_class": "auto",
+    "penalty": "l2",
+    "solver": "lbfgs",
+    "class_weight": "balanced"},
+  "AdaBoost":{},
+  "XGB":
+  {"n_estimators":100,
+    "learning_rate":0.3,
+    "max_depth":6,
+    "subsample":1,
+    "gamma":0,
+    "reg_lambda":1,
+    "max_delta_step":0,
+    "colsample_bytree":1,
+    "min_child_weight":1,
+    "seed":1000},
+  "GBM":
+  { "random_state":0,
+    "learning_rate": 1.0,
+    "max_depth": 1,
+    "n_estimators": 100},
+  "LightGBM": {},
+  "NB": {}}

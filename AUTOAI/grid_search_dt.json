@@ -1,0 +1,42 @@
+{
+  "C4.5 DT": {"criterion": ["gini",  "entropy"], "max_depth": [100,300,null],
+    "min_samples_split":[2,4,6], "min_samples_leaf": [1,2,4,10], "max_features": ["auto", null],
+    "class_weight": ["balanced"]
+  },
+  "RF": {"criterion": ["gini",  "entropy"], "max_depth": [100,300,null], "min_samples_split":[2,4,6],
+    "min_samples_leaf": [1,2,4], "max_features": ["auto", null], "class_weight": ["balanced"],
+    "n_estimators": [100,300,500]
+  },
+  "KNN": {"n_neighbors":  [3, 5, 10, 20],
+    "weights": ["uniform", "distance"],
+    "algorithm": ["auto", "ball_tree", "kd_tree", "brute"],
+    "leaf_size": [15, 30, 60],
+    "n_jobs": [-1]
+  },
+  "SVM": {"C": [1, 100, 1000], "kernel": ["linear", "poly", "rbf", "sigmoid"],
+    "tol":  [1e-2, 1e-3, 1e-5],"class_weight": ["balanced"],
+    "max_iter": [-1, 100, 1000], "probability":[true]
+  },
+  "LogReg": {"penalty":  ["l1", "l2"], "tol":  [1e-2, 1e-4, 1e-6], "C": [1, 100, 1000],
+    "class_weight": ["balanced"], "n_jobs": [-1],
+    "solver" : ["liblinear", "newton-cg", "lbfgs"],
+    "multi_class":["auto"]
+  },
+  "AdaBoost": {
+    "learning_rate": [1e-5, 1e-3, 1, 10],
+    "n_estimators": [300,500,1000,5000]
+  },
+  "XGB":{
+    "learning_rate": [1e-5, 1e-3, 1, 10],
+    "n_estimators": [300,500,1000,5000],
+    "max_depth": [5,10,30],
+    "use_label_encoder":[false]
+  },
+  "GBM":{
+    "learning_rate": [1e-5, 1e-3, 1, 10],
+    "n_estimators": [300,500,1000,5000],
+    "max_depth": [5,10,30]
+  },
+  "LightGBM": {},
+  "NB": {}
+}

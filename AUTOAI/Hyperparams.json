@@ -1,0 +1,59 @@
+{ "SVM": 
+    { 
+      "C": 100,
+      "class_weight": "balanced",
+      "kernel": "rbf",
+      "max_iter": 100,
+      "tol": 0.01,
+      "probability": true
+    },
+  "CART":
+    {
+      "class_weight": "balanced",
+      "criterion": "entropy",
+      "max_depth": 1000,
+      "max_features": "auto",
+      "min_samples_leaf": 2, 
+      "min_samples_split": 4
+    },
+  "LogReg":
+    {
+      "C": 1,
+      "class_weight": "balanced",
+      "n_jobs": -1,
+      "penalty": "l2",
+      "solver": "liblinear",
+      "tol": 0.0001
+    },
+  "NB": 
+    {
+
+    },
+  "C4.5": 
+    {
+
+    },
+  "KNN": 
+    {
+      "algorithm": "auto",
+      "leaf_size": 15,
+      "n_jobs": -1,
+      "n_neighbors": 20,
+      "weights": "uniform"
+    },
+  "RF":
+    {
+      "class_weight": "balanced",
+      "criterion": "gini",
+      "max_depth": null,
+      "max_features": "auto",
+      "min_samples_leaf": 2,
+      "min_samples_split": 6,
+      "n_estimators": 1000
+    },
+  "Ada": 
+    {
+      "learning_rate": 0.001,
+      "n_estimators": 500
+    }
+}
