@@ -7,12 +7,8 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 
-cwd = os.getcwd()
-save_dir = cwd + "/Save_Models"
-save_Figures = cwd + "/Figures"
-fontsz = 20
 
-def plot_ROC_cruve(fpr, tpr, roc_auc, title=None, n_classes=None, plot_class=None, savepth=None):
+def plot_ROC_cruve(fpr, tpr, roc_auc, title=None, n_classes=None, plot_class=None, savepth=None, fontsz = 20):
 
     """
     plot binary or multi-classes ROC, for plotting multi-classes (n_classes>=3), use plot_class
@@ -81,7 +77,7 @@ def plot_ROC_cruve(fpr, tpr, roc_auc, title=None, n_classes=None, plot_class=Non
     
 
 
-def plot_pecision_recall_curve(precision, recall, average_precision, title=None, n_classes=None, plot_class=None):
+def plot_pecision_recall_curve(precision, recall, average_precision, title=None, n_classes=None, plot_class=None, fontsz= 20):
     """
     plot binary or multi-classes Precision-Recall Curve
     :param precision: (list, dict) list or dict of precision
@@ -138,14 +134,14 @@ def plot_pecision_recall_curve(precision, recall, average_precision, title=None,
     else:
         print("input is None")
 
-    plt.xlabel('Recall', fontsize=18, fontweight="bold")
-    plt.ylabel('Precision', fontsize=18, fontweight="bold")
+    plt.xlabel('Recall', fontsize=fontsz, fontweight="bold")
+    plt.ylabel('Precision', fontsize=fontsz, fontweight="bold")
     plt.ylim([0.0, 1.0])
     plt.xlim([0.0, 1.0])
-    plt.legend(bbox_to_anchor=(0., -.302, 0., .102), loc=3, ncol=2, borderaxespad=0.)
+    plt.legend(bbox_to_anchor=(0., -.302, 0., .102), loc=3, ncol=2, borderaxespad=0., fontsize=fontsz-2)
 
     if title is not None:
-        plt.title('AUPRC%s\n' % (title), fontsize=26)
+        plt.title('AUPRC%s\n' % (title), fontsize=fontsz)
         plt.savefig("../Output/Figures/%s_PRC.tif" % title, bbox_inches="tight")
 
     else:
@@ -209,7 +205,7 @@ def plot_confusion_matrix(y_true, y_pred, classes,
     return ax, cm
 
 
-def plot_feature_selection(sfs, features_name, title=""):
+def plot_feature_selection(sfs, features_name, title="", fontsz=20):
     order_ls = []
     score_ls = []
 
@@ -235,10 +231,10 @@ def plot_feature_selection(sfs, features_name, title=""):
     sns.barplot(np.arange(0, len(best_features)), np.array(score_ls) * 100, color="b", ax=ax[0])
     ax[0].set_ylim([0, 110])
     ax[0].set_xticklabels([bf if i == 0 else "... + " + bf for i, bf in enumerate(list(best_features))],
-                          rotation=90, fontsize=18)
+                          rotation=90, fontsize=fontsz)
 
     for i, score in enumerate(score_ls):
-        ax[0].text(i - 0.2, score * 100 + 2, "%.2f" % np.dot(score, 100), fontsize=14)
+        ax[0].text(i - 0.2, score * 100 + 2, "%.2f" % np.dot(score, 100), fontsize=fontsz)
 
     ax[0].set_ylabel("Accuracy, %")
     ax[0].set_title("{} Sequential Forward Selection Best Features".format(title))
@@ -253,7 +249,7 @@ def plot_feature_selection(sfs, features_name, title=""):
     inax.plot(np.array(all_result_ls[:len(features_name)]) * 100)
     inax.set_ylim([0, 100])
     inax.set_xticks(np.arange(0, len(features_name)))
-    inax.set_xticklabels(features_name, rotation=90, fontsize=14)
+    inax.set_xticklabels(features_name, rotation=90, fontsize=fontsz)
 
     ax[1].indicate_inset_zoom(inax, lw=5)
 
