@@ -15,6 +15,7 @@
 - matplotlib==3.7.0
 - seaborn==0.12.0
 - pandas==1.6.0
+
 ### Installing
 after creating a vitual enviroments
 - pip install -r ./requirements.txt

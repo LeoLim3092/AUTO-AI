@@ -22,14 +22,10 @@ from mlxtend.feature_selection.sequential_feature_selector import _calc_score, _
 import joblib
 from joblib import Parallel, delayed
 import numpy as np
-
-
-global now_date_time
-now_date_time = datetime.datetime.now().strftime("%m%d%Y_%H%M%S")
+from .config import now_date_time
 
 
 class MySequentialFeatureSelector(SequentialFeatureSelector):
-
     def __init__(self, estimator, k_features=1, forward=True, floating=False, verbose=0, scoring=None, cv=5, n_jobs=1,
                  pre_dispatch='2*n_jobs', clone_estimator=True, fixed_features=None):
 
@@ -80,17 +76,22 @@ class MySequentialFeatureSelector(SequentialFeatureSelector):
 
 class Training:
 
-    def __init__(self, hyper_parameters_json_file_pth=None, models="all", save_trained_model=False, output_file_name="", run_name="",
+    def __init__(self, hyper_parameters_json_file_pth=None, models="all", save_trained_model=False, output_file_name="",
                   output_folder_pth="./path_to_outputs/"):
 
         self.save_model = save_trained_model
         self.run_date = now_date_time
-        self.run_name = run_name
-        
         _file_name = "{}_{}".format(self.run_date, output_file_name)
-        
-        self.save_pth = "{}{}/Save_model_{}/".format(output_folder_pth, _file_name, self.run_name)
+
         self.output_pth = "{}{}/".format(output_folder_pth, _file_name)
+        self.save_pth = "{}Save_model/".format(self.output_pth)
+        self.sfs_pth = "{}FeatureSelection/".format(self.output_pth)
+        self.result_dir = "{}results/".format(self.output_pth)
+
+        os.makedirs(self.output_pth, exist_ok=True)
+        os.makedirs(self.save_pth, exist_ok=True)
+        os.makedirs(self.sfs_pth, exist_ok=True)
+        os.makedirs(self.result_dir, exist_ok=True)
 
         self.selected_features = {}
         self.selected_features_score = {}
@@ -267,7 +268,14 @@ def run_train(x, y, verbose=1, update_params=True, update_file_pth=None, hyper_p
                 load_best_params=load_best_params,
                 models=models, output_file_name=output_file_name,
                 run_name=run_name, save_trained_model=save_trained_model)
-
+    
+    pth_dt = {
+         "result_pth" : t.result_dir,
+        "sfs_pth" : t.sfs_pth,
+        "save_pth" : t.save_pth,
+        "output_pth" : t.output_pth,
+    }
+   
     if grid_search:
         t.grid_search(x, y, update_params=update_params, verbose=verbose,
                       update_file_pth=update_file_pth, cv=cv)
@@ -323,8 +331,8 @@ def run_train(x, y, verbose=1, update_params=True, update_file_pth=None, hyper_p
     gt_dt = t.gt_dt
 
     if feature_selection:
-        return t.selected_features, t.selected_features_score, out_dt, gt_dt, idx_dt
+        return t.selected_features, t.selected_features_score, out_dt, gt_dt, idx_dt, pth_dt
     else:
-        return out_dt, gt_dt, idx_dt
+        return out_dt, gt_dt, idx_dt, pth_dt
 
     del t
