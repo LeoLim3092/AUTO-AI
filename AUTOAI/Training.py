@@ -237,8 +237,7 @@ class Training:
             self.selected_features[clf_name] = sfs.k_feature_idx_
             self.selected_features_score[clf_name] = sfs.k_score_
 
-            dis_pth = "{}FeatureSelection_{}/{}.joblib".format(self.output_pth,
-                                                               self.run_name,
+            dis_pth = "{}FeatureSelection/{}.joblib".format(self.output_pth,
                                                                clf_name)
 
             print(dis_pth)
@@ -259,15 +258,14 @@ class Training:
 
 
 def run_train(x, y, verbose=1, update_params=True, update_file_pth=None, hyper_parameters_json_file_pth=None,
-              grid_search=True, load_best_params=False, feature_selection=True, features=None, cv=10,
-              k_features="best", models="all", split_test=False, x_test=None, y_test=None, output_file_name="", run_name="", save_trained_model=False, loo=False):
+              grid_search=True, feature_selection=True, features=None, cv=10,
+              k_features="best", models="all", split_test=False, x_test=None, y_test=None, output_file_name="", save_trained_model=False, loo=False, output_folder_pth="./path_to_outputs/"):
     
     idx_dt = {"train": [], "valid": [], "test": []}
 
     t = Training(hyper_parameters_json_file_pth=hyper_parameters_json_file_pth,
-                load_best_params=load_best_params,
                 models=models, output_file_name=output_file_name,
-                run_name=run_name, save_trained_model=save_trained_model)
+                save_trained_model=save_trained_model, output_folder_pth=output_folder_pth)
     
     pth_dt = {
          "result_pth" : t.result_dir,

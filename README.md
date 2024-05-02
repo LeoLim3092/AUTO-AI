@@ -6,18 +6,22 @@
 
 ## Installation
 ### Prerequisites
-- scikit-learn==1.1.3
-- xgboost==1.7.4
-- lightgbm==3.4.0
-- mlxtend==0.22.0
+- python==3.11.5
+
+- scikit-learn==1.2.2
+- xgboost==1.7.3
+- lightgbm==4.1.0
+- mlxtend==0.23.0
 - joblib==1.2.0
-- numpy==1.25.0
-- matplotlib==3.7.0
-- seaborn==0.12.0
-- pandas==1.6.0
+- numpy==1.26.0
+- matplotlib==3.8.1
+- seaborn==0.13.0
+- pandas==2.1.1
+
 
 ### Installing
 after creating a vitual enviroments
+- conda create -n ENV_Name python==3.11.5
 - pip install -r ./requirements.txt
 
 ## Usage
@@ -34,7 +38,12 @@ This program is designed to handle inputs in the form of 2D matrices utilizing e
 Contribution guidelines
 
 ## Tests
-How to run tests
+Setup the package
+create an output folder 
+prepare the datasets
+run example.py or create your own
+remember to create correct pth for output and datasets
+change the traning parameter in example.py train_params_dt
 
 ## Deployment
 
