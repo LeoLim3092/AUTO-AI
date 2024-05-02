@@ -38,12 +38,12 @@ This program is designed to handle inputs in the form of 2D matrices utilizing e
 Contribution guidelines
 
 ## Tests
-Setup the package
-create an output folder 
-prepare the datasets
-run example.py or create your own
-remember to create correct pth for output and datasets
-change the traning parameter in example.py train_params_dt
+- Setup the package
+- create an output folder 
+- prepare the datasets
+- run example.py or create your own
+- remember to create correct pth for output and datasets
+- change the traning parameter in example.py train_params_dt
 
 ## Deployment
 
